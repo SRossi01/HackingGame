@@ -3,26 +3,25 @@ package com.company;
 import java.util.Scanner;
 
 public class Game {
-    private Difficulty difficulty;
+    private int difficulty;
     private String[] wordBank;
 
-    public Game(Difficulty difficulty) {
+    public Game(int difficulty) {
         this.difficulty = difficulty;
         this.setDifficulty();
     }
 
-    // TODO: 9/6/18 Add Words to difficulties other than AVERAGE
     private void setDifficulty() {
-        if (this.difficulty == Difficulty.VERY_EASY) {
+        if (this.difficulty == 1) {
+            this.wordBank = new String[]{"Cart", "Power", "Green", "Fresh", "Part", "Next"};
+        } else if (this.difficulty == 2) {
+            this.wordBank = new String[]{"Yellow", "Article", "Pancake", "Phrase", "Water", "British"};
+        } else if (this.difficulty == 3) {
             this.wordBank = new String[]{"Buzzword", "Particle", "Flapjack", "Cardioid", "Finnegan", "Japanese"};
-        } else if (this.difficulty == Difficulty.EASY) {
-            this.wordBank = new String[]{"Buzzword", "Particle", "Flapjack", "Cardioid", "Finnegan", "Japanese"};
-        } else if (this.difficulty == Difficulty.AVERAGE) {
-            this.wordBank = new String[]{"Buzzword", "Particle", "Flapjack", "Cardioid", "Finnegan", "Japanese"};
-        } else if (this.difficulty == Difficulty.HARD) {
-            this.wordBank = new String[]{"Buzzword", "Particle", "Flapjack", "Cardioid", "Finnegan", "Japanese"};
-        } else if (this.difficulty == Difficulty.VERY_HARD) {
-            this.wordBank = new String[]{"Buzzword", "Particle", "Flapjack", "Cardioid", "Finnegan", "Japanese"};
+        } else if (this.difficulty == 4) {
+            this.wordBank = new String[]{"Radiation", "Taxonomy", "Accelerate", "Disinflation", "Gregorian", "Synesthesia"};
+        } else if (this.difficulty == 5) {
+            this.wordBank = new String[]{"Providence", "Manifestation", "Cartwheel", "Disinfectant", "Disambiguation", "Battleship"};
         }
     }
 
@@ -55,7 +54,7 @@ public class Game {
         char[] wordC = word.toLowerCase().toCharArray();
         char[] guessC = guess.toLowerCase().toCharArray();
         int correct = 0;
-
+        // Avoid passing index bounds if words are diff lengths
         if (wordC.length >= guessC.length) {
             for (int i = 0; i < guessC.length; i++) {
                 if (wordC[i] == guessC[i])
